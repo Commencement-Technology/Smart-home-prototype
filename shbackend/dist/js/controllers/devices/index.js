@@ -17,7 +17,11 @@ const devices_1 = __importDefault(require("../../models/devices"));
 const getDevices = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const devices = yield devices_1.default.find();
-        res.status(200).json({ message: "Devices retrieved", status: "200 OK", devices: devices });
+        res.status(200).json({
+            message: "Devices retrieved",
+            status: "200 OK",
+            devices: devices,
+        });
     }
     catch (error) {
         throw error;
@@ -31,11 +35,16 @@ const addDevices = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
             name: body.name,
             state: body.state,
             image: body.image,
-            location: body.location
+            location: body.location,
         });
         const newdevice = yield device.save();
         const alldevices = yield devices_1.default.find();
-        res.status(201).json({ message: "Devices created", status: "201 Created", newdevice: newdevice, devices: alldevices });
+        res.status(201).json({
+            message: "Devices created",
+            status: "201 Created",
+            newdevice: newdevice,
+            devices: alldevices,
+        });
     }
     catch (error) {
         throw error;
@@ -44,10 +53,15 @@ const addDevices = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
 exports.addDevices = addDevices;
 const updatedevices = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { params: { id }, body } = req;
+        const { params: { id }, body, } = req;
         const updatedevice = yield devices_1.default.findByIdAndUpdate({ _id: id }, body);
         const alldevices = yield devices_1.default.find();
-        res.status(200).json({ message: "Devices updated", status: "200 OK", device: updatedevice, devices: alldevices });
+        res.status(200).json({
+            message: "Devices updated",
+            status: "200 OK",
+            device: updatedevice,
+            devices: alldevices,
+        });
     }
     catch (error) {
         throw error;
@@ -58,7 +72,12 @@ const deletedevices = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     try {
         const removedevice = yield devices_1.default.findByIdAndRemove(req.params.id);
         const alldevices = yield devices_1.default.find();
-        res.status(200).json({ message: "Device deleted", status: "200 OK", device: removedevice, devices: alldevices });
+        res.status(200).json({
+            message: "Device deleted",
+            status: "200 OK",
+            device: removedevice,
+            devices: alldevices,
+        });
     }
     catch (error) {
         throw error;

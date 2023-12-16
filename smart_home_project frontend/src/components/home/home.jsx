@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import Searchbar from '../search bar/searchbar';
 import Cammusic from '../cammusic/cammusic';
 import axios from 'axios';
-import {useDevices} from "../../DevicesContext"
+import {useDevices} from '../../context/DevicesContext'
 
 
 

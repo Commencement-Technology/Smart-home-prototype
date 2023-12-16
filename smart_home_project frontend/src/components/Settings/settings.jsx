@@ -1,7 +1,7 @@
 import { useState,useEffect } from "react"
 import s from "./settings.module.css"
 import axios from "axios"
-import {useDevices} from "../../DevicesContext"
+import {useDevices} from "../../context/DevicesContext"
 import Editdevice from "../editdevice/editdevice"
 import Deletedevice from "../deletedevice/deletedevice"
 import Weatherloc from "../weatherloc/weatherloc"

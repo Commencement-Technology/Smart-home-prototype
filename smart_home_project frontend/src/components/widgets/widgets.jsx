@@ -2,8 +2,8 @@ import axios from "axios"
 import { useState } from "react"
 import { useEffect } from "react"
 import s from './widgets.module.css'
-import {uselocation} from "../../LocationContext"
-import {useCoords} from "../../CoordsContext"
+import {uselocation} from "../../context/locationcontext"
+import {useCoords} from "../../context/CoordsContext"
 
 function widgets(){
     const api_key= import.meta.env.VITE_API_KEY

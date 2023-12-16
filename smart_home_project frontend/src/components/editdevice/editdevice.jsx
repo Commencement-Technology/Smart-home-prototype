@@ -1,5 +1,5 @@
 import s from "./editdevice.module.css"
-import {useDevices} from "../../DevicesContext"
+import {useDevices} from "../../context/DevicesContext"
 import { useEffect, useState } from "react"
 import axios from "axios";
 function editdevice(){

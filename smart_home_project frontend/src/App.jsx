@@ -4,9 +4,10 @@ import Navicon from './components/navicon/navicon'
 import Widgets from './components/widgets/widgets'
 import Power from './components/power_consumption/power'
 import { ClerkProvider, RedirectToSignIn, SignedIn, SignedOut } from "@clerk/clerk-react";
-import { DevicesProvider } from './DevicesContext'
-import { LocationProvider } from './LocationContext'
-import { CoordsProvider } from './CoordsContext'
+import { DevicesProvider } from './context/DevicesContext'
+import { LocationProvider } from "./context/locationcontext";
+import { CoordsProvider } from "./context/CoordsContext";
+import { AuthContextProvider } from './context/AuthContext'
  
 if (!import.meta.env.VITE_REACT_APP_CLERK_PUBLISHABLE_KEY) {
   throw new Error("Missing Publishable Key");
@@ -21,6 +22,7 @@ function App() {
   return (
     <ClerkProvider publishableKey={clerkPubKey}>
       <SignedIn>
+      
       <div className='App'>
         <div className='sidebar'>
           <Navicon route="home"/>
@@ -44,6 +46,7 @@ function App() {
       </LocationProvider>
         
       </div>
+      
       </SignedIn>
       <SignedOut>
         <RedirectToSignIn />

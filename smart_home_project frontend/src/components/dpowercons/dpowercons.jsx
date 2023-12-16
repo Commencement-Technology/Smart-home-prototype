@@ -8,7 +8,9 @@ function dpowercons (props) {
     
 
  return(
- <div className='mt-10'>
+  
+  
+ <div className='mt-7 text-sm'>
   <Row gutter={16}>
     <Col span={12}>
       <Statistic title={props.title} value={45} formatter={formatter} />
@@ -18,6 +20,7 @@ function dpowercons (props) {
     </Col>
   </Row>
   </div>
+  
  )
  };
 

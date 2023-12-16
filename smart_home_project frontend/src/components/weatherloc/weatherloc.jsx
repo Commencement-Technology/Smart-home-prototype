@@ -1,4 +1,4 @@
-import {uselocation} from "../../LocationContext"
+import {uselocation} from "../../context/locationcontext"
 import { useState } from "react"
 
 function weatherloc(){

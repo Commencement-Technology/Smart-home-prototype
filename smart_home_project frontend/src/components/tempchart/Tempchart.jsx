@@ -1,5 +1,5 @@
 import React, { useEffect, useState} from 'react';
-import {useCoords} from "../../CoordsContext"
+import {useCoords} from "../../context/CoordsContext"
 import { Line } from 'react-chartjs-2';
 import axios from 'axios';
 import {

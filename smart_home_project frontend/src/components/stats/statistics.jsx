@@ -1,6 +1,6 @@
 import TEMPCHART from "../tempchart/Tempchart"
 import Dpowercons from "../dpowercons/dpowercons"
-import {useDevices} from "../../DevicesContext"
+import {useDevices} from "../../context/DevicesContext"
 import {useEffect} from "react"
 import axios from 'axios';
 import { useState } from "react";
@@ -27,6 +27,7 @@ function statistics() {
         <div className="statistics">
             <h1 className="font-semibold">Statistics</h1>
             <TEMPCHART/>
+            <h1 className='font-semibold mt-5'>Device power consumption (for the current session)</h1>
             {devices.map((device)=>(
                 <Dpowercons key={device._id} title={"Power consumption - " + device.name}/>
             )
