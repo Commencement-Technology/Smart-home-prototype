@@ -96,7 +96,8 @@ const loginuser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         res.status(200).json({
             message: "user logged in",
             status: "200 OK",
-            user: token,
+            user: login,
+            token: token
         });
     }
     catch (error) {

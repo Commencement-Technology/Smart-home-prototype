@@ -10,7 +10,7 @@ import s from "./navicon.module.css"
 function navicon (props){
     if (props.route=='home'){
         return (
-            <NavLink to={"/"}>
+            <NavLink to={"/home"}>
                 {(linkprops)=>{
                     return (
                         <div

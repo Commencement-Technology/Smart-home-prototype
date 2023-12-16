@@ -10,13 +10,21 @@ import Statistics from './components/stats/statistics.jsx';
 import Registeruser from './components/Register/Register.jsx';
 import Login from './components/login/login.jsx';
 import { AuthContextProvider } from './context/AuthContext';
+import Security from './components/security/security.jsx';
+import { useAuthContext } from './hooks/useAuthContext.jsx';
+
+// const {user}=useAuthContext()
 const router= createBrowserRouter ([
+  {
+    path: "/",
+    element: <Registeruser />,
+  },
   {
   element:<App/>,
   children:
   [
     {
-      path:"/",
+      path:"/home",
       element:<Home/>,
     },
     {
@@ -26,6 +34,10 @@ const router= createBrowserRouter ([
     {
       path:"/statistics",
       element:<Statistics/>
+    },
+    {
+      path:"/security",
+      element:<Security/>
     }
   ],
   
@@ -34,10 +46,6 @@ const router= createBrowserRouter ([
   path:"*",
   element:<Notfound/>
 
-},
-{
-  path:"/register",
-  element:<Registeruser/>
 },
 {
   path:"/login",

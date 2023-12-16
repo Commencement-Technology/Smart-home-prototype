@@ -1,10 +1,13 @@
 import { UserButton,useUser } from '@clerk/clerk-react'
 import myimg from './../../assets/me (2).jpg'
 import s from './header.module.css'
+import { useAuthContext } from '../../hooks/useAuthContext';
 
 function header(){
     
+        const {user}=useAuthContext()
         const userData= useUser();
+        
         if(!userData.isLoaded){
             return(
                 <div className={s.header}>
@@ -35,7 +38,7 @@ function header(){
 
         <div className={s.header}>
             <div className={s.header_text}>
-            <h1>Hello, {name}!</h1>
+            <h1>Hello, {user.name}!</h1>
             <p className="text-lg font-semibold" >Your devices are under your control.</p>
             </div>
 
