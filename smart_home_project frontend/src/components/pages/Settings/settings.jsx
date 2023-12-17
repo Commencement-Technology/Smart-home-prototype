@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import s from "./settings.module.css";
 import axios from "axios";
-import { useDevices } from "../../context/DevicesContext";
-import Editdevice from "../editdevice/editdevice";
-import Deletedevice from "../deletedevice/deletedevice";
-import Weatherloc from "../weatherloc/weatherloc";
-import { useAuthContext } from "../../hooks/useAuthContext";
+import { useDevices } from "../../../context/DevicesContext";
+import Editdevice from "../../editdevice/editdevice";
+import Deletedevice from "../../deletedevice/deletedevice";
+import Weatherloc from "../../weatherloc/weatherloc";
+import { useAuthContext } from "../../../hooks/useAuthContext";
 import { useNavigate } from "react-router-dom";
 
 function Settings() {
@@ -27,6 +27,7 @@ function Settings() {
 
   const handledevicesubmit = async (e, formdata) => {
     e.preventDefault();
+    // validae the image url for a new device
     function isValidURL() {
       // Regular expression to match a URL pattern
       var urlPattern =
@@ -48,7 +49,9 @@ function Settings() {
         image: formdata.image,
         location: formdata.location,
       };
+      // add the new device to the database using the api
       const response = await axios.post(`${baseurl}/adddevice`, newdevice, {
+        // add the token to the header for authentication
         headers: { Authorization: `Bearer ${user.token}` },
       });
       setDevices(response.data.devices);
@@ -63,6 +66,7 @@ function Settings() {
     if (!user) {
       navigate("/login");
     }
+    // get all the devices in the initial mount
     const getDevices = async () => {
       const response = await axios.get(`${baseurl}/devices`, {
         headers: { Authorization: `Bearer ${user.token}` },

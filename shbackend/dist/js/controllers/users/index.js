@@ -17,10 +17,12 @@ const user_1 = __importDefault(require("../../models/user"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const validator_1 = __importDefault(require("validator"));
+// create token with user id
 const createtoken = (_id) => {
     // @ts-ignore
     return jsonwebtoken_1.default.sign({ _id }, process.env.JWT_SECRET, { expiresIn: "1d" });
 };
+// controller functions to register and login users
 const registeruser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = req.body;
     try {

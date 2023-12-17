@@ -16,15 +16,19 @@ app.use((0, cors_1.default)({
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
 }));
 app.options("*", (0, cors_1.default)());
+// requireAuth middleware is applied to all routes except /login and /register
+// to prevent unauthenticated users from accessing protected routes
 app.use(requireAuth_1.default);
 app.use(express_1.default.json());
+// routes
 app.use(routes_1.default);
 const port = process.env.PORT || 3000;
-const uri = `mongodb+srv://aaqilruzzan:FygOTWB3vav7ExSB@cluster0.2yosv2p.mongodb.net/smarthomeproject`;
+const uri = process.env.MONGO_URI || "";
 const options = {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 };
+// connect to MongoDB
 mongoose_1.default
     .connect(uri, options)
     .then(() => {

@@ -2,6 +2,8 @@ import jwt, { JwtPayload, Secret } from "jsonwebtoken";
 import { Request, Response, NextFunction } from "express";
 import user from "../models/user";
 
+// requireAuth middleware is applied to all routes except /login and /register
+// to prevent unauthenticated users from accessing protected routes
 const requireAuth = async (req: Request, res: Response, next: NextFunction) => {
   if (req.path === "/login" || req.path === "/register") {
     return next();
@@ -16,6 +18,7 @@ const requireAuth = async (req: Request, res: Response, next: NextFunction) => {
   const token = authorization.split(" ")[1];
 
   try {
+    // verify token
     const decodedToken = jwt.verify(
       token,
       process.env.JWT_SECRET as Secret

@@ -4,10 +4,13 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import validator from "validator";
 
+// create token with user id
 const createtoken = (_id: string) => {
   // @ts-ignore
   return jwt.sign({ _id }, process.env.JWT_SECRET, { expiresIn: "1d" });
 };
+
+// controller functions to register and login users
 
 const registeruser = async (req: Request, res: Response): Promise<void> => {
   const body = req.body;

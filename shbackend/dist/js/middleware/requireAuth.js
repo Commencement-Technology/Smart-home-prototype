@@ -14,6 +14,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const user_1 = __importDefault(require("../models/user"));
+// requireAuth middleware is applied to all routes except /login and /register
+// to prevent unauthenticated users from accessing protected routes
 const requireAuth = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     if (req.path === "/login" || req.path === "/register") {
         return next();
@@ -25,6 +27,7 @@ const requireAuth = (req, res, next) => __awaiter(void 0, void 0, void 0, functi
     }
     const token = authorization.split(" ")[1];
     try {
+        // verify token
         const decodedToken = jsonwebtoken_1.default.verify(token, process.env.JWT_SECRET);
         const { _id } = decodedToken;
         // @ts-ignore

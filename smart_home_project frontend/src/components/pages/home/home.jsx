@@ -1,12 +1,12 @@
-import Header from "../header/header";
-import DeviceCard from "../card/card";
-import Location_chip from "../location_chip/location_chip";
+import Header from "../../header/header";
+import DeviceCard from "../../card/card";
+import Location_chip from "../../location_chip/location_chip";
 import { useEffect, useState } from "react";
-import Searchbar from "../search bar/searchbar";
-import Cammusic from "../cammusic/cammusic";
+import Searchbar from "../../search bar/searchbar";
+import Cammusic from "../../cammusic/cammusic";
 import axios from "axios";
-import { useDevices } from "../../context/DevicesContext";
-import { useAuthContext } from "../../hooks/useAuthContext";
+import { useDevices } from "../../../context/DevicesContext";
+import { useAuthContext } from "../../../hooks/useAuthContext";
 import { useNavigate } from "react-router-dom";
 
 function home() {
@@ -16,9 +16,11 @@ function home() {
   const [loading, setLoading] = useState("true");
   const [searchvalue, Setsearchvalue] = useState("");
   const baseurl = "http://localhost:3000";
+  // user state based on authentication status
   const { user } = useAuthContext();
   const navigate = useNavigate();
 
+  // setting the location in the house to show devices
   const handleLocationSelect = (location) => {
     setLocation(location);
   };
@@ -27,6 +29,7 @@ function home() {
     Setsearchvalue(value);
   };
 
+  // handling on or off state in a device
   const handleDevices = (_id) => {
     setDevices((alldevices) => {
       const updatedDevices = alldevices.map((device) => {
@@ -45,6 +48,7 @@ function home() {
     });
   };
 
+  // filtering devices based on location
   const filtered_devices =
     selectedLocation == "All"
       ? devices
@@ -52,14 +56,17 @@ function home() {
           return selectedLocation == device.location;
         });
 
+  // filtering devices based on search value
   const filtered_devices_final = filtered_devices.filter((device) => {
     return device.name.replace(" ", "").toLowerCase().includes(searchvalue);
   });
 
   useEffect(() => {
+    // if the user is not authenticated, redirect to /login
     if (!user) {
       navigate("/login");
     }
+    // get all devices from the database by requesting the /devices endpoint
     const getDevices = async () => {
       const response = await axios.get(`${baseurl}/devices`, {
         headers: { Authorization: `Bearer ${user.token}` },

@@ -5,6 +5,8 @@ import user from "../../models/user";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
+// controller functions to get, add, update and delete devices
+
 const getDevices = async (req: Request, res: Response): Promise<void> => {
   try {
     const devices: device[] = await devicemodel.find();
@@ -87,10 +89,4 @@ const deletedevices = async (req: Request, res: Response): Promise<void> => {
   }
 };
 
-
-export {
-  getDevices,
-  addDevices,
-  updatedevices,
-  deletedevices,
-};
+export { getDevices, addDevices, updatedevices, deletedevices };

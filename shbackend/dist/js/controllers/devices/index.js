@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deletedevices = exports.updatedevices = exports.addDevices = exports.getDevices = void 0;
 const devices_1 = __importDefault(require("../../models/devices"));
+// controller functions to get, add, update and delete devices
 const getDevices = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const devices = yield devices_1.default.find();

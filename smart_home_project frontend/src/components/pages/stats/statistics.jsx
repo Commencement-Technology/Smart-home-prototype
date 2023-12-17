@@ -1,10 +1,10 @@
-import TEMPCHART from "../tempchart/Tempchart";
-import Dpowercons from "../dpowercons/dpowercons";
-import { useDevices } from "../../context/DevicesContext";
+import TEMPCHART from "../../tempchart/Tempchart";
+import Dpowercons from "../../dpowercons/dpowercons";
+import { useDevices } from "../../../context/DevicesContext";
 import { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
-import { useAuthContext } from "../../hooks/useAuthContext";
+import { useAuthContext } from "../../../hooks/useAuthContext";
 import { useNavigate } from "react-router-dom";
 
 function statistics() {
@@ -15,9 +15,12 @@ function statistics() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    // if the user is not authenticated, redirect to /login
     if (!user) {
       navigate("/login");
     }
+
+    // get devices to show power consumption
     const getDevices = async () => {
       const response = await axios.get(`${baseurl}/devices`, {
         headers: { Authorization: `Bearer ${user.token}` },
@@ -35,6 +38,7 @@ function statistics() {
   return (
     <div className="statistics">
       <h1 className="font-semibold">Statistics</h1>
+      {/* Chart showing the weather forecast for the upcoming week */}
       <TEMPCHART />
       <h1 className="font-semibold mt-5">
         Device power consumption (for the current session)
