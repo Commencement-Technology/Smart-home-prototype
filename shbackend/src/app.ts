@@ -1,34 +1,41 @@
-import cors from "cors"
-import express,{Express} from "express"
-import mongoose from "mongoose"
-import routes from "./routes"
-import dotenv from 'dotenv';
+import cors from "cors";
+import express, { Express } from "express";
+import mongoose from "mongoose";
+import routes from "./routes";
+import dotenv from "dotenv";
 dotenv.config();
-const app:Express = express()
+import requireAuth from "./middleware/requireAuth";
 
+const app: Express = express();
 app.use(
-    cors({
-      origin: "http://localhost:5173", 
-      methods: "GET,HEAD,PUT,PATCH,POST,DELETE", 
-     
-    })
-  );
+  cors({
+    origin: "http://localhost:5173",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  })
+);
+app.options("*", cors());
+
+app.use(requireAuth);
 
 app.use(express.json());
-app.use(routes)
 
-const port : string|number = process.env.PORT || 3000
+app.use(routes);
+
+const port: string | number = process.env.PORT || 3000;
 const uri: string = `mongodb+srv://aaqilruzzan:FygOTWB3vav7ExSB@cluster0.2yosv2p.mongodb.net/smarthomeproject`;
 
-const options = { useNewUrlParser: true, useUnifiedTopology: true} as mongoose.ConnectOptions
+const options = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+} as mongoose.ConnectOptions;
 
-mongoose.connect(uri,options)
-.then(()=>{
-    app.listen(port,()=>{
-        console.log(`Server is running on http://localhost:${port}`)
-    })
-
-})
-.catch(error =>{
-    throw error
-})
+mongoose
+  .connect(uri, options)
+  .then(() => {
+    app.listen(port, () => {
+      console.log(`Server is running on http://localhost:${port}`);
+    });
+  })
+  .catch((error) => {
+    throw error;
+  });

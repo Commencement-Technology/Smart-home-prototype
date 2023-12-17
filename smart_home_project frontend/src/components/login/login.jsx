@@ -7,13 +7,13 @@ function login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const baseurl = "http://localhost:3000";
-  const { user,dispatch } = useAuthContext();
+  const { user, dispatch } = useAuthContext();
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
   if (user) {
     // If the user is authenticated, redirect to /home
-    navigate('/home');
+    navigate("/home");
   }
 
   const loginuser = async (e) => {
@@ -35,10 +35,16 @@ function login() {
           },
         }
       );
-      alert(response.data.message);
-      localStorage.setItem("user", JSON.stringify({name:response.data.user.name,
-        token:response.data.token,email:response.data.user.email}));
-      dispatch({ type: "LOGIN", payload: response.data.user });
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          name: response.data.name,
+          token: response.data.token,
+          email: response.data.email,
+        })
+      );
+      alert("user logged in successfully");
+      dispatch({ type: "LOGIN", payload: response.data });
     } catch (error) {
       console.error(error);
       setError(error.response.data.message);
@@ -103,7 +109,10 @@ function login() {
           <div className="flex justify-center container mx-auto mt-2 text-slate-100 text-sm">
             <div className="flex flex-col sm:flex-row  justify-between md:w-1/2 items-center">
               <div className="flex text-[15px]">Forgot password?</div>
-              <div className="flex text-[15px]">
+              <div
+                className="flex text-[15px] hover:text-blue-300 cursor-pointer"
+                onClick={() => navigate("/")}
+              >
                 Dont have an account? Get Started.
               </div>
             </div>

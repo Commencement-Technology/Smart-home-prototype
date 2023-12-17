@@ -1,21 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useAuthContext } from "../../hooks/useAuthContext";
-
+import { useNavigate } from "react-router-dom";
 
 const Security = () => {
-    const { dispatch } = useAuthContext();
-    const Logout = () => {
-        
-          // remove user from storage
-          localStorage.removeItem("user");
-      
-          // dispatch logout action
-          dispatch({ type: "LOGOUT" });
-        
-      
-         
-      };
-      
+  const { user, dispatch } = useAuthContext();
+  const navigate = useNavigate();
+
+  const Logout = () => {
+    // remove user from storage
+    localStorage.removeItem("user");
+
+    // dispatch logout action
+    dispatch({ type: "LOGOUT" });
+    navigate("/login");
+  };
+
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    }
+  }, []);
+
   return (
     <div className="security">
       <h1 className="font-semibold">Security</h1>

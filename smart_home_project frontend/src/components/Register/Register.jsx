@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { useNavigate } from "react-router-dom";
@@ -7,14 +7,13 @@ function register() {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const baseurl = "http://localhost:3000";
-  const { user,dispatch } = useAuthContext();
+  const { user, dispatch } = useAuthContext();
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-
   if (user) {
     // If the user is authenticated, redirect to /home
-    navigate('/home');
+    navigate("/home");
   }
 
   const registeruser = async (e) => {
@@ -38,13 +37,16 @@ function register() {
           },
         }
       );
-      alert(response.data.message);
-      localStorage.setItem("user", JSON.stringify({name:response.data.newuser.name,
-        token:response.data.token,email:response.data.newuser.email}));
-      dispatch({ type: "LOGIN", payload: response.data.newuser });
-      
-      
-      
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          name: response.data.name,
+          token: response.data.token,
+          email: response.data.email,
+        })
+      );
+      alert("user registered successfully");
+      dispatch({ type: "LOGIN", payload: response.data });
     } catch (error) {
       console.log(error);
       setError(error.response.data.message);
@@ -108,22 +110,25 @@ function register() {
               </button>
             </div>
 
-          {error && <div className="w-3/4 mb-2">
-              <div
-                class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-1 text-[15px] "
-                role="alert"
-              >
-                <p>{error}</p>
-                
+            {error && (
+              <div className="w-3/4 mb-2">
+                <div
+                  class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-1 text-[15px] "
+                  role="alert"
+                >
+                  <p>{error}</p>
+                </div>
               </div>
-            </div>
-        }
-           
-
+            )}
           </div>
           <div className="flex justify-center container mx-auto mt-2 text-slate-100 text-sm">
             <div className="flex flex-col sm:flex-row  justify-between md:w-1/2 items-center">
-              <div className="flex text-[15px]" onClick={()=>navigate("/login")}>Back to login</div>
+              <div
+                className="flex text-[15px] hover:text-blue-300 cursor-pointer"
+                onClick={() => navigate("/login")}
+              >
+                Back to login
+              </div>
             </div>
           </div>
         </div>

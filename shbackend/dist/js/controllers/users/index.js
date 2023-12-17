@@ -47,9 +47,8 @@ const registeruser = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         const newentry = yield newuser.save();
         const token = createtoken(newentry._id);
         res.status(201).json({
-            message: "user created",
-            status: "201 Created",
-            newuser: newentry,
+            name: newentry.name,
+            email: newentry.email,
             token: token,
         });
     }
@@ -66,7 +65,7 @@ const registeruser = (req, res) => __awaiter(void 0, void 0, void 0, function* (
             console.error("Internal Server Error:", error);
             res.status(500).json({
                 status: "500 Internal Server Error",
-                message: "500 Internal Server Error, User not created"
+                message: "500 Internal Server Error, User not created",
             });
         }
     }
@@ -94,10 +93,9 @@ const loginuser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         }
         const token = createtoken(login._id);
         res.status(200).json({
-            message: "user logged in",
-            status: "200 OK",
-            user: login,
-            token: token
+            name: login.name,
+            email: login.email,
+            token: token,
         });
     }
     catch (error) {

@@ -9,22 +9,29 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const routes_1 = __importDefault(require("./routes"));
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
+const requireAuth_1 = __importDefault(require("./middleware/requireAuth"));
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)({
     origin: "http://localhost:5173",
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
 }));
+app.options("*", (0, cors_1.default)());
+app.use(requireAuth_1.default);
 app.use(express_1.default.json());
 app.use(routes_1.default);
 const port = process.env.PORT || 3000;
 const uri = `mongodb+srv://aaqilruzzan:FygOTWB3vav7ExSB@cluster0.2yosv2p.mongodb.net/smarthomeproject`;
-const options = { useNewUrlParser: true, useUnifiedTopology: true };
-mongoose_1.default.connect(uri, options)
+const options = {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+};
+mongoose_1.default
+    .connect(uri, options)
     .then(() => {
     app.listen(port, () => {
         console.log(`Server is running on http://localhost:${port}`);
     });
 })
-    .catch(error => {
+    .catch((error) => {
     throw error;
 });

@@ -36,7 +36,7 @@ const registeruser = async (req: Request, res: Response): Promise<void> => {
 
     const newuser = new user({
       name: body.name,
-      email: body.email, 
+      email: body.email,
       password: hashedPassword,
     });
 
@@ -44,9 +44,8 @@ const registeruser = async (req: Request, res: Response): Promise<void> => {
     const token = createtoken(newentry._id as string);
 
     res.status(201).json({
-      message: "user created",
-      status: "201 Created",
-      newuser: newentry,
+      name: newentry.name,
+      email: newentry.email,
       token: token,
     });
   } catch (error) {
@@ -62,10 +61,10 @@ const registeruser = async (req: Request, res: Response): Promise<void> => {
 
       res.status(500).json({
         status: "500 Internal Server Error",
-        message: "500 Internal Server Error, User not created"
+        message: "500 Internal Server Error, User not created",
       });
     }
-}
+  }
 };
 
 const loginuser = async (req: Request, res: Response): Promise<void> => {
@@ -98,10 +97,9 @@ const loginuser = async (req: Request, res: Response): Promise<void> => {
     const token = createtoken(login._id as string);
 
     res.status(200).json({
-      message: "user logged in",
-      status: "200 OK",
-      user: login,
-      token: token
+      name: login.name,
+      email: login.email,
+      token: token,
     });
   } catch (error) {
     res.status(500).json({
@@ -110,6 +108,5 @@ const loginuser = async (req: Request, res: Response): Promise<void> => {
     });
   }
 };
-
 
 export { registeruser, loginuser };
