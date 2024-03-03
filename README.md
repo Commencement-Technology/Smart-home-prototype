@@ -6,9 +6,12 @@ A prototype for a smart home project. Implemented with the MERN stack also inclu
   <img width="261" alt="settings" src="https://github.com/aaqilruzzan/Smart-home-prototype/assets/145353456/7545a8b0-1f5d-4b3e-8cac-c6fe819b7bcc">
   <img width="251" alt="stats 1" src="https://github.com/aaqilruzzan/Smart-home-prototype/assets/145353456/d642cb0b-6832-43d0-b361-18d0de18e8c4">
   <img width="255" alt="stats 2" src="https://github.com/aaqilruzzan/Smart-home-prototype/assets/145353456/48abd6c6-a226-41d8-9d19-019ebb4e1ce2">
+  <img width="250" alt="register" src="https://github.com/aaqilruzzan/Smart-home-prototype/assets/145353456/398005a0-d570-4261-8ebc-6a3f9adedef6">
+<img width="250" alt="login" src="https://github.com/aaqilruzzan/Smart-home-prototype/assets/145353456/b4a5e3ac-6b0d-46df-aaee-fd7b10a89fc1">
+
 </div>
 
-<img width="960" alt="register" src="https://github.com/aaqilruzzan/Smart-home-prototype/assets/145353456/398005a0-d570-4261-8ebc-6a3f9adedef6">
-<img width="940" alt="login" src="https://github.com/aaqilruzzan/Smart-home-prototype/assets/145353456/b4a5e3ac-6b0d-46df-aaee-fd7b10a89fc1">
+<img width="250" alt="register" src="https://github.com/aaqilruzzan/Smart-home-prototype/assets/145353456/398005a0-d570-4261-8ebc-6a3f9adedef6">
+<img width="250" alt="login" src="https://github.com/aaqilruzzan/Smart-home-prototype/assets/145353456/b4a5e3ac-6b0d-46df-aaee-fd7b10a89fc1">
 
 
