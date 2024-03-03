@@ -11,7 +11,6 @@ A prototype for a smart home project. Implemented with the MERN stack also inclu
 
 </div>
 
-<img width="250" alt="register" src="https://github.com/aaqilruzzan/Smart-home-prototype/assets/145353456/398005a0-d570-4261-8ebc-6a3f9adedef6">
-<img width="250" alt="login" src="https://github.com/aaqilruzzan/Smart-home-prototype/assets/145353456/b4a5e3ac-6b0d-46df-aaee-fd7b10a89fc1">
+
 
 
